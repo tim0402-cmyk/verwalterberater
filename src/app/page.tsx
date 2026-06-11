@@ -365,7 +365,7 @@ export default function Home() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="flex-shrink-0 relative hidden lg:block"
+            className="flex-shrink-0 relative block mt-4 lg:mt-0"
           >
             {/* Neon glow behind photo */}
             <div
@@ -380,7 +380,7 @@ export default function Home() {
                 padding: "1px",
               }}
             />
-            <div className="relative rounded-3xl overflow-hidden w-80 h-[520px]">
+            <div className="relative rounded-3xl overflow-hidden w-64 h-[380px] sm:w-72 sm:h-[460px] lg:w-80 lg:h-[520px]">
               {/* Fallback gradient shown if image not yet uploaded */}
               <div
                 className="absolute inset-0 bg-gradient-to-b from-[#1a0a2e] to-[#030014]"
