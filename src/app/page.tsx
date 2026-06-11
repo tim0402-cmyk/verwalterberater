@@ -23,7 +23,12 @@ import {
   Users,
   Headphones,
   ExternalLink,
+  CalendarClock,
 } from "lucide-react"
+
+// ─── Terminbuchung ────────────────────────────────────────────────────────────
+// TODO: Echten Calendly-/Buchungslink hier eintragen (z.B. https://calendly.com/tim-weber/15min)
+const BOOKING_URL = "https://calendly.com/verwalterberater/15min"
 
 function LinkedinIcon({ className, style }: { className?: string; style?: React.CSSProperties }) {
   return (
@@ -672,11 +677,36 @@ export default function Home() {
                 Lass uns <span className="text-gradient-purple">reden</span>
               </h2>
               <p className="text-white/50 max-w-lg mx-auto">
-                Kostenfreies Erstgespräch, 30 Minuten. Wir schauen gemeinsam, wo der größte Hebel für Dein Unternehmen liegt.
+                Kostenfreies Erstgespräch, 15 Minuten. Wir schauen gemeinsam, wo der größte Hebel für Dein Unternehmen liegt.
               </p>
             </motion.div>
 
+            {/* Termin direkt buchen — prominent */}
+            <motion.div variants={fadeUp} className="mb-8">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col sm:flex-row items-center gap-6 neon-border rounded-3xl p-6 md:p-8 hover:scale-[1.01] transition-transform"
+              >
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 neon-glow-purple" style={{ background: "linear-gradient(135deg, #a855f7, #38bdf8)" }}>
+                  <CalendarClock className="w-8 h-8 text-white" />
+                </div>
+                <div className="flex-1 text-center sm:text-left">
+                  <h3 className="text-xl font-bold text-white mb-1">Termin direkt aussuchen</h3>
+                  <p className="text-white/55 text-sm">
+                    Wähle Dir einen freien 15-Minuten-Slot im Kalender — unkompliziert, sofort bestätigt.
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 text-sm font-semibold whitespace-nowrap px-5 py-3 rounded-full glass-strong group-hover:bg-white/15 transition-colors" style={{ color: "#c4b5fd" }}>
+                  Slot buchen
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </a>
+            </motion.div>
+
             <motion.div variants={fadeUp} className="glass-strong rounded-3xl p-8 md:p-12">
+              <p className="text-center text-xs text-white/30 uppercase tracking-widest mb-6">Oder schreib mir direkt</p>
               <div className="grid md:grid-cols-3 gap-5 mb-10">
                 <a
                   href="mailto:info@verwalterberater.de"
