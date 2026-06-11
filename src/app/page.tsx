@@ -23,8 +23,16 @@ import {
   Users,
   Headphones,
   ExternalLink,
-  Linkedin,
 } from "lucide-react"
+
+function LinkedinIcon({ className, style }: { className?: string; style?: React.CSSProperties }) {
+  return (
+    <svg className={className} style={style} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+      <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+    </svg>
+  )
+}
 import { NeonFlow } from "@/components/ui/neon-flow"
 import { LiquidGlassButton } from "@/components/ui/liquid-glass-button"
 import { Marquee } from "@/components/ui/3d-testimonials"
@@ -34,7 +42,7 @@ import { NavLogo } from "@/components/ui/logo"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const } },
 }
 
 const stagger = {
@@ -623,7 +631,7 @@ export default function Home() {
                     style={{ border: "1px solid rgba(10,102,194,0.25)" }}
                   >
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "#0a66c2" }}>
-                      <Linkedin className="w-4 h-4 text-white" />
+                      <LinkedinIcon className="w-4 h-4 text-white" />
                     </div>
                     <div>
                       <p className="text-xs text-white/40">Vernetzen auf LinkedIn</p>
@@ -705,7 +713,7 @@ export default function Home() {
                   style={{ border: "1px solid rgba(10,102,194,0.2)" }}
                 >
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors" style={{ background: "rgba(10,102,194,0.18)" }}>
-                    <Linkedin className="w-5 h-5" style={{ color: "#4d9fdc" }} />
+                    <LinkedinIcon className="w-5 h-5" style={{ color: "#4d9fdc" }} />
                   </div>
                   <div>
                     <p className="text-xs text-white/40 mb-0.5">LinkedIn</p>
@@ -779,7 +787,7 @@ export default function Home() {
               className="flex items-center gap-1 transition-colors"
               style={{ color: "#0a66c2" }}
             >
-              <Linkedin className="w-3 h-3" />
+              <LinkedinIcon className="w-3 h-3" />
               LinkedIn
             </a>
             <a href="/impressum" className="hover:text-white/60 transition-colors">Impressum</a>
