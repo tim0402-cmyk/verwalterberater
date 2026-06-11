@@ -380,7 +380,7 @@ export default function Home() {
               />
               {/* Photo — replace src with actual file once copied to /public/images/ */}
               <img
-                src="/images/tim-speaking.jpg"
+                src="/images/3.jpg"
                 alt="Tim Felix Weber – Verwalterberater"
                 className="relative z-10 w-full h-full object-cover object-top"
                 onError={(e) => { (e.target as HTMLImageElement).style.opacity = "0" }}
@@ -556,7 +556,7 @@ export default function Home() {
                 <div className="relative w-40 h-48 rounded-2xl overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-b from-[#1a1535] to-[#030014]" />
                   <img
-                    src="/images/tim-portrait.jpg"
+                    src="/images/8.jpg"
                     alt="Tim Felix Weber"
                     className="relative z-10 w-full h-full object-cover object-top"
                     onError={(e) => {
