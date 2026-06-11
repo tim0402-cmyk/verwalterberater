@@ -213,8 +213,8 @@ const values = [
   },
   {
     icon: CheckCircle2,
-    title: "DATEV & Datenschutz",
-    desc: "Alle Empfehlungen berücksichtigen die DSGVO und gängige Branchensoftware. Sicherheit first.",
+    title: "Datenschutz First",
+    desc: "Alle Empfehlungen berücksichtigen die DSGVO und gängige Branchensoftware. Sicherheit hat Vorrang.",
   },
 ]
 
