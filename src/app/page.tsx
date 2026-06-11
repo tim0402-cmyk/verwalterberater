@@ -349,8 +349,8 @@ export default function Home() {
             >
               {[
                 { val: "25+", label: "Jahre Branchenwissen" },
-                { val: "200+", label: "Unternehmen beraten" },
-                { val: "Ø 30%", label: "Zeitersparnis" },
+                { val: "100+", label: "Unternehmen beraten" },
+                { val: "bis 70%", label: "Zeitersparnis" },
               ].map((s) => (
                 <div key={s.label}>
                   <p className="text-2xl md:text-3xl font-bold text-gradient-purple">{s.val}</p>
