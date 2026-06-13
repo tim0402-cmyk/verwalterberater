@@ -352,6 +352,30 @@ function TestimonialCard({ name, role, body, initials, stars, video }: (typeof t
   )
 }
 
+// E-Mail scraping-sicher: Adresse wird erst im Browser per JS zusammengesetzt,
+// steht also NICHT im statischen HTML-Quelltext (Schutz vor Spam-Crawlern).
+function ObfuscatedEmail() {
+  const [addr, setAddr] = useState<string | null>(null)
+  useEffect(() => {
+    setAddr(["donna", "verwalterberater.de"].join("@"))
+  }, [])
+  return (
+    <button
+      type="button"
+      onClick={() => { if (addr) window.location.href = "mailto:" + addr }}
+      className="flex items-center gap-4 glass rounded-xl p-5 hover:border-[#5aab9f]/40 transition-all group w-full text-left"
+    >
+      <div className="w-12 h-12 rounded-xl bg-[#5aab9f]/15 flex items-center justify-center flex-shrink-0 group-hover:bg-[#5aab9f]/25 transition-colors">
+        <Mail className="w-5 h-5 text-[#7fc4ba]" />
+      </div>
+      <div>
+        <p className="text-xs text-white/40 mb-0.5">E-Mail</p>
+        <p className="font-medium text-white text-sm break-all">{addr ?? "E-Mail anzeigen"}</p>
+      </div>
+    </button>
+  )
+}
+
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -770,18 +794,7 @@ export default function Home() {
             <motion.div variants={fadeUp} className="glass-strong rounded-3xl p-8 md:p-12">
               <p className="text-center text-xs text-white/30 uppercase tracking-widest mb-6">Oder schreib uns direkt</p>
               <div className="grid md:grid-cols-3 gap-5 mb-10">
-                <a
-                  href="mailto:info@verwalterberater.de"
-                  className="flex items-center gap-4 glass rounded-xl p-5 hover:border-[#5aab9f]/40 transition-all group"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-[#5aab9f]/15 flex items-center justify-center flex-shrink-0 group-hover:bg-[#5aab9f]/25 transition-colors">
-                    <Mail className="w-5 h-5 text-[#7fc4ba]" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-white/40 mb-0.5">E-Mail</p>
-                    <p className="font-medium text-white text-sm break-all">info@verwalterberater.de</p>
-                  </div>
-                </a>
+                <ObfuscatedEmail />
                 <a
                   href="https://open.spotify.com/show/2lCJj9KOSLL8yJze7epqhT"
                   target="_blank"

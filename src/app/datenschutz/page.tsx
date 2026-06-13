@@ -50,8 +50,8 @@ export default function Datenschutz() {
               <p>Berliner Str. 55, 10713 Berlin</p>
               <p>
                 E-Mail:{" "}
-                <a href="mailto:info@verwalterberater.de" className="text-[#5aab9f]">
-                  info@verwalterberater.de
+                <a href="mailto:donna@verwalterberater.de" className="text-[#5aab9f]">
+                  donna@verwalterberater.de
                 </a>
               </p>
             </div>
@@ -133,8 +133,8 @@ export default function Datenschutz() {
               sowie bei Auskunft, Berichtigung, Sperrung oder Löschung von Daten wenden Sie sich bitte an:
             </p>
             <p className="mt-2">
-              <a href="mailto:info@verwalterberater.de" className="text-[#5aab9f] hover:underline">
-                info@verwalterberater.de
+              <a href="mailto:donna@verwalterberater.de" className="text-[#5aab9f] hover:underline">
+                donna@verwalterberater.de
               </a>
             </p>
           </section>
