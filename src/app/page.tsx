@@ -38,7 +38,6 @@ function LinkedinIcon({ className, style }: { className?: string; style?: React.
     </svg>
   )
 }
-import { NeonFlow } from "@/components/ui/neon-flow"
 import { LiquidGlassButton } from "@/components/ui/liquid-glass-button"
 import { Marquee } from "@/components/ui/3d-testimonials"
 import { NavLogo } from "@/components/ui/logo"
@@ -287,11 +286,35 @@ export default function Home() {
       </nav>
 
       {/* ── Hero ── */}
-      <NeonFlow className="min-h-screen pt-16">
-        <div className="min-h-screen max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-center gap-12 relative">
+      <section className="relative min-h-screen pt-16 overflow-hidden">
+        {/* Hintergrund-Video statt Wellen */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/hero-poster.jpg"
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        {/* Dunkler Overlay — Ruhe + Lesbarkeit */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(11,16,20,0.86) 0%, rgba(11,16,20,0.72) 45%, rgba(11,16,20,0.94) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "radial-gradient(circle at 30% 35%, rgba(79,157,146,0.16), transparent 60%)" }}
+        />
+
+        <div className="min-h-screen max-w-4xl mx-auto px-6 flex flex-col items-center justify-center text-center relative z-10">
 
           {/* Text side */}
-          <div className="flex-1 flex flex-col items-start text-left z-10">
+          <div className="flex flex-col items-center text-center">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -317,9 +340,9 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="mt-6 text-lg text-white/55 max-w-xl leading-relaxed"
+              className="mt-6 text-lg text-white/60 max-w-xl leading-relaxed mx-auto"
             >
-              Tim Weber begleitet Hausverwaltungsunternehmen dabei, KI und Automatisierung
+              Wir begleiten Hausverwaltungsunternehmen dabei, KI und Automatisierung
               so einzusetzen, dass sie weniger arbeiten und mehr erreichen.
               Kein Hype — echte Resultate.
             </motion.p>
@@ -365,51 +388,6 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Photo side */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="flex-shrink-0 relative block mt-4 lg:mt-0"
-          >
-            {/* Neon glow behind photo */}
-            <div
-              className="absolute -inset-8 rounded-3xl blur-2xl opacity-30"
-              style={{ background: "radial-gradient(ellipse, #5aab9f 0%, #38bdf8 60%, transparent 100%)" }}
-            />
-            {/* Teal accent ring */}
-            <div
-              className="absolute -inset-1 rounded-3xl"
-              style={{
-                background: "linear-gradient(135deg, rgba(90,171,159,0.4), rgba(168,85,247,0.3))",
-                padding: "1px",
-              }}
-            />
-            <div className="relative rounded-3xl overflow-hidden w-64 h-[380px] sm:w-72 sm:h-[460px] lg:w-80 lg:h-[520px]">
-              {/* Fallback gradient shown if image not yet uploaded */}
-              <div
-                className="absolute inset-0 bg-gradient-to-b from-[#1a0a2e] to-[#0b1014]"
-                aria-hidden="true"
-              />
-              {/* Photo — replace src with actual file once copied to /public/images/ */}
-              <img
-                src="/images/3.jpg"
-                alt="Tim Felix Weber – Verwalterberater"
-                className="relative z-10 w-full h-full object-cover object-top"
-                onError={(e) => { (e.target as HTMLImageElement).style.opacity = "0" }}
-              />
-              {/* Bottom gradient blend */}
-              <div className="absolute bottom-0 left-0 right-0 h-32 z-20 bg-gradient-to-t from-[#0b1014] to-transparent" />
-              {/* Name badge */}
-              <div className="absolute bottom-5 left-5 right-5 z-30 glass-strong rounded-2xl p-4">
-                <p className="font-bold text-white text-sm">Tim Felix Weber</p>
-                <p className="text-xs" style={{ color: "#5aab9f" }}>
-                  KI-Berater · Hausverwalter · Podcast-Host
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.4 }}
@@ -420,7 +398,7 @@ export default function Home() {
             <span className="text-xs text-white/40 uppercase tracking-widest">Scroll</span>
           </motion.div>
         </div>
-      </NeonFlow>
+      </section>
 
       {/* ── Leistungen ── */}
       <section id="leistungen" className="py-32 px-6 relative">
