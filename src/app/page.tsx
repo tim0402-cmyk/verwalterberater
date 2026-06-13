@@ -192,7 +192,7 @@ const steps = [
 // (z.B. "/videos/tonscheid.mp4") — sobald gesetzt, erscheint ein Play-Button.
 const testimonials = [
   {
-    name: "Andreas Tonscheid",
+    name: "Andreas Tonscheidt",
     role: "Mitglied im VDIV",
     body: "Tim hat unsere komplette Auftragsbearbeitung automatisiert. Wir sparen heute spürbar Zeit — und setzen sie für das ein, was wirklich zählt.",
     initials: "AT",
