@@ -267,6 +267,7 @@ const team = [
     bio: "Führt mit CASITA selbst eine Berliner Hausverwaltung und weiß aus erster Hand, welche Prozesse sich zu automatisieren lohnen. Übersetzt KI in konkrete, sofort nutzbare Abläufe.",
     linkedin: "https://www.linkedin.com/in/timfelixweber/",
     vdiv: null as string | null,
+    ai: null as string | null,
   },
   {
     name: "Ralf Michels",
@@ -276,6 +277,7 @@ const team = [
     bio: "Verkaufte seine eigene Verwaltung mit über 6.000 Einheiten und ist Präsidiumsmitglied im VDIV. Bringt Marktüberblick, Strategie und ein starkes Branchennetzwerk ein.",
     linkedin: null,
     vdiv: "Präsidiumsmitglied im VDIV",
+    ai: null as string | null,
   },
   {
     name: "Nicole Wilke",
@@ -285,6 +287,17 @@ const team = [
     bio: "Sorgt dafür, dass aus Strategie gelebte Praxis wird — strukturiert Abläufe, begleitet die Umsetzung und hält im Team den roten Faden.",
     linkedin: null,
     vdiv: null as string | null,
+    ai: null as string | null,
+  },
+  {
+    name: "Donna",
+    role: "KI-Mitarbeiterin",
+    img: "/images/team-donna.jpg",
+    initials: "D",
+    bio: "Donna ist unsere vollständig KI-generierte Kollegin. Sie arbeitet autonom rund um die Uhr, nimmt uns einen großen Teil der täglichen Arbeit ab, organisiert Abläufe und hält den Laden am Laufen — unsere digitale rechte und linke Hand.",
+    linkedin: null,
+    vdiv: null as string | null,
+    ai: "100% KI · autonom",
   },
 ]
 
@@ -613,7 +626,7 @@ export default function Home() {
             </motion.div>
 
             {/* Team-Grid */}
-            <div className="grid md:grid-cols-3 gap-6 mb-10">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
               {team.map((m) => (
                 <motion.div
                   key={m.name}
@@ -640,6 +653,15 @@ export default function Home() {
                       {m.initials}
                     </div>
                     <div className="absolute bottom-0 inset-x-0 h-20 z-20 bg-gradient-to-t from-[#0b1014] to-transparent" />
+                    {/* KI-Badge (nur Donna) — transparent gekennzeichnet */}
+                    {m.ai && (
+                      <span
+                        className="absolute top-3 right-3 z-30 text-[10px] font-bold uppercase tracking-wide text-white px-2.5 py-1 rounded-full"
+                        style={{ background: "linear-gradient(135deg, #5aab9f, #38bdf8)" }}
+                      >
+                        {m.ai}
+                      </span>
+                    )}
                   </div>
                   <div className="p-6 flex flex-col flex-1">
                     <h3 className="text-lg font-bold text-white">{m.name}</h3>
