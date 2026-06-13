@@ -59,7 +59,7 @@ function CountUp({
   to,
   prefix = "",
   suffix = "",
-  duration = 3.4,
+  duration = 5.1,
   delay = 0.5,
   className = "",
 }: {
