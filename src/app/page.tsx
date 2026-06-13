@@ -24,6 +24,7 @@ import {
   Headphones,
   ExternalLink,
   CalendarClock,
+  Play,
 } from "lucide-react"
 
 // ─── Terminbuchung ────────────────────────────────────────────────────────────
@@ -39,7 +40,6 @@ function LinkedinIcon({ className, style }: { className?: string; style?: React.
   )
 }
 import { LiquidGlassButton } from "@/components/ui/liquid-glass-button"
-import { Marquee } from "@/components/ui/3d-testimonials"
 import { NavLogo } from "@/components/ui/logo"
 
 // ─── Animation helpers ────────────────────────────────────────────────────────
@@ -187,54 +187,41 @@ const steps = [
   },
 ]
 
+// HINWEIS: Namen sind echt (VDIV-Mitglieder). Die Zitate sind PLATZHALTER
+// und müssen von Tim durch echte Aussagen ersetzt werden. video = optional
+// (z.B. "/videos/tonscheid.mp4") — sobald gesetzt, erscheint ein Play-Button.
 const testimonials = [
   {
     name: "Andreas Tonscheid",
-    role: "Geschäftsführer, AT Immobilienverwaltung",
-    body: "Tim hat unsere komplette Auftragsbearbeitung automatisiert. Wir sparen heute 12 Stunden pro Woche — ohne einen einzigen Mitarbeiter zu entlassen, sondern indem wir sie für wirklich wichtige Aufgaben einsetzen.",
+    role: "Mitglied im VDIV",
+    body: "Tim hat unsere komplette Auftragsbearbeitung automatisiert. Wir sparen heute spürbar Zeit — und setzen sie für das ein, was wirklich zählt.",
     initials: "AT",
     stars: 5,
-    color: "from-[#3d8c82] to-[#2a6b63]",
+    video: null as string | null,
   },
   {
     name: "Petra Schauerte",
-    role: "Inhaberin, Schauerte Hausverwaltung",
-    body: "Der Kurs hat mir die Augen geöffnet. KI war für mich ein Fremdwort — heute ist es mein täglichstes Werkzeug. Tim erklärt es so, dass man es sofort anwenden kann.",
+    role: "Mitglied im VDIV",
+    body: "KI war für mich ein Fremdwort — heute ist es mein tägliches Werkzeug. Es wird so erklärt, dass man es sofort anwenden kann.",
     initials: "PS",
     stars: 5,
-    color: "from-sky-600 to-sky-800",
+    video: null as string | null,
   },
   {
     name: "Hubert Haas",
-    role: "Prokurist, Haas & Partner GmbH",
-    body: "Was andere Berater in Monaten versprechen, liefert Tim in Wochen. Praxisnähe auf einem Niveau, das ich selten erlebt habe. Absolute Empfehlung für jeden Hausverwalter.",
+    role: "Mitglied im VDIV",
+    body: "Praxisnähe auf einem Niveau, das ich selten erlebt habe. Absolute Empfehlung für jeden Hausverwalter.",
     initials: "HH",
     stars: 5,
-    color: "from-cyan-600 to-cyan-800",
+    video: null as string | null,
   },
   {
     name: "Jürgen Gutekunst",
-    role: "Geschäftsführer, JG Verwaltungsgesellschaft",
-    body: "Endlich ein Berater der weiß, wie Hausverwaltung wirklich funktioniert. Tim redet nicht um den heißen Brei — er zeigt Dir genau, wo der Hebel sitzt.",
+    role: "Mitglied im VDIV",
+    body: "Endlich jemand, der weiß, wie Hausverwaltung wirklich funktioniert — und genau zeigt, wo der Hebel sitzt.",
     initials: "JG",
     stars: 5,
-    color: "from-emerald-600 to-emerald-800",
-  },
-  {
-    name: "Sabine Ritter",
-    role: "WEG-Verwalterin, Berlin",
-    body: "Die KI-Checkliste allein hat meinen Arbeitsalltag komplett verändert. Ich bearbeite Anfragen jetzt doppelt so schnell und mit viel weniger Fehlern.",
-    initials: "SR",
-    stars: 5,
-    color: "from-orange-600 to-orange-800",
-  },
-  {
-    name: "Markus Wendland",
-    role: "Inhaber, Wendland Immobilien",
-    body: "Tim kennt die Branche in- und auswendig. Das macht den Unterschied zu generischen Digitalisierungsberatern. Hier wird nicht erklärt — hier wird gezeigt.",
-    initials: "MW",
-    stars: 5,
-    color: "from-rose-600 to-rose-800",
+    video: null as string | null,
   },
 ]
 
@@ -279,6 +266,7 @@ const team = [
     initials: "TW",
     bio: "Führt mit CASITA selbst eine Berliner Hausverwaltung und weiß aus erster Hand, welche Prozesse sich zu automatisieren lohnen. Übersetzt KI in konkrete, sofort nutzbare Abläufe.",
     linkedin: "https://www.linkedin.com/in/timfelixweber/",
+    vdiv: null as string | null,
   },
   {
     name: "Ralf Michels",
@@ -287,6 +275,7 @@ const team = [
     initials: "RM",
     bio: "Verkaufte seine eigene Verwaltung mit über 6.000 Einheiten und ist Präsidiumsmitglied im VDIV. Bringt Marktüberblick, Strategie und ein starkes Branchennetzwerk ein.",
     linkedin: null,
+    vdiv: "Präsidiumsmitglied im VDIV",
   },
   {
     name: "Nicole Wilke",
@@ -295,32 +284,55 @@ const team = [
     initials: "NW",
     bio: "Sorgt dafür, dass aus Strategie gelebte Praxis wird — strukturiert Abläufe, begleitet die Umsetzung und hält im Team den roten Faden.",
     linkedin: null,
+    vdiv: null as string | null,
   },
 ]
 
 // ─── Testimonial Card ─────────────────────────────────────────────────────────
 
-function TestimonialCard({ name, role, body, initials, stars, color }: (typeof testimonials)[number]) {
+function TestimonialCard({ name, role, body, initials, stars, video }: (typeof testimonials)[number]) {
   return (
     <div
-      className="glass w-72 rounded-2xl p-5 mx-2 flex flex-col gap-3 flex-shrink-0"
+      className="glass rounded-2xl p-6 flex flex-col gap-4 h-full hover:border-[#5aab9f]/30 transition-colors"
       style={{ border: "1px solid rgba(255,255,255,0.08)" }}
     >
-      <div className="flex gap-0.5">
-        {Array.from({ length: stars }).map((_, i) => (
-          <Star key={i} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-        ))}
+      <div className="flex items-center justify-between">
+        <div className="flex gap-0.5">
+          {Array.from({ length: stars }).map((_, i) => (
+            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+          ))}
+        </div>
+        {/* VDIV-Logo-Badge */}
+        <span className="inline-flex items-center bg-white rounded-md px-2 py-1">
+          <img src="/images/vdiv-logo.png" alt="VDIV" className="h-4 w-auto" />
+        </span>
       </div>
-      <p className="text-sm text-white/75 leading-relaxed">&ldquo;{body}&rdquo;</p>
-      <div className="flex items-center gap-3 mt-auto pt-2 border-t border-white/8">
-        <div
-          className={`w-9 h-9 rounded-full bg-gradient-to-br ${color} flex items-center justify-center text-xs font-bold text-white flex-shrink-0`}
+
+      <p className="text-sm text-white/75 leading-relaxed flex-1">&ldquo;{body}&rdquo;</p>
+
+      {/* Optionaler Video-Button (erscheint, sobald video gesetzt ist) */}
+      {video && (
+        <a
+          href={video}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-xs font-medium w-fit"
+          style={{ color: "#5aab9f" }}
         >
+          <span className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "rgba(90,171,159,0.2)" }}>
+            <Play className="w-3.5 h-3.5" style={{ color: "#7fc4ba" }} />
+          </span>
+          Video ansehen
+        </a>
+      )}
+
+      <div className="flex items-center gap-3 mt-auto pt-3 border-t border-white/10">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#4f9d92] to-[#38bdf8] flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
           {initials}
         </div>
         <div>
-          <p className="text-xs font-semibold text-white">{name}</p>
-          <p className="text-xs text-white/50">{role}</p>
+          <p className="text-sm font-semibold text-white">{name}</p>
+          <p className="text-xs" style={{ color: "#7fc4ba" }}>{role}</p>
         </div>
       </div>
     </div>
@@ -572,32 +584,16 @@ export default function Home() {
                 Hausverwaltungen aus ganz Deutschland berichten von ihrer Transformation.
               </p>
             </motion.div>
+
+            {/* Ruhiges Referenz-Grid — alle Mitglieder im VDIV */}
+            <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {testimonials.map((t) => (
+                <motion.div key={t.name} variants={fadeUp}>
+                  <TestimonialCard {...t} />
+                </motion.div>
+              ))}
+            </div>
           </Section>
-        </div>
-        <div className="relative flex h-[480px] w-full flex-row items-center justify-center overflow-hidden gap-1.5 [perspective:300px]">
-          <div
-            className="flex flex-row items-center gap-4"
-            style={{
-              transform: "translateX(-60px) translateY(0px) translateZ(-80px) rotateX(18deg) rotateY(-8deg) rotateZ(18deg)",
-            }}
-          >
-            <Marquee vertical pauseOnHover repeat={3} className="[--duration:35s]">
-              {testimonials.map((t) => <TestimonialCard key={t.name + "a"} {...t} />)}
-            </Marquee>
-            <Marquee vertical pauseOnHover reverse repeat={3} className="[--duration:38s]">
-              {testimonials.map((t) => <TestimonialCard key={t.name + "b"} {...t} />)}
-            </Marquee>
-            <Marquee vertical pauseOnHover repeat={3} className="[--duration:32s]">
-              {testimonials.map((t) => <TestimonialCard key={t.name + "c"} {...t} />)}
-            </Marquee>
-            <Marquee vertical pauseOnHover reverse repeat={3} className="[--duration:42s]">
-              {testimonials.map((t) => <TestimonialCard key={t.name + "d"} {...t} />)}
-            </Marquee>
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-[#0b1014]" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#0b1014]" />
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/5 bg-gradient-to-r from-[#0b1014]" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/5 bg-gradient-to-l from-[#0b1014]" />
-          </div>
         </div>
       </section>
 
@@ -648,6 +644,13 @@ export default function Home() {
                   <div className="p-6 flex flex-col flex-1">
                     <h3 className="text-lg font-bold text-white">{m.name}</h3>
                     <p className="text-sm mb-3" style={{ color: "#5aab9f" }}>{m.role}</p>
+                    {/* VDIV-Badge (nur wenn gesetzt, z.B. Ralf) */}
+                    {m.vdiv && (
+                      <span className="inline-flex items-center gap-2 w-fit bg-white rounded-md pl-1.5 pr-2.5 py-1 mb-3" title={m.vdiv}>
+                        <img src="/images/vdiv-logo.png" alt="VDIV" className="h-4 w-auto" />
+                        <span className="text-[10px] font-medium text-[#1a3a5c] leading-tight">{m.vdiv}</span>
+                      </span>
+                    )}
                     <p className="text-sm text-white/55 leading-relaxed flex-1">{m.bio}</p>
                     {m.linkedin && (
                       <a
