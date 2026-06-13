@@ -115,7 +115,7 @@ export function NeonFlow({ children, className }: NeonFlowProps) {
       const t = timeRef.current
 
       // Fade trail
-      ctx.fillStyle = "rgba(3, 0, 20, 0.18)"
+      ctx.fillStyle = "rgba(11, 16, 20, 0.18)"
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       drawFlowLines(t)
@@ -164,7 +164,7 @@ export function NeonFlow({ children, className }: NeonFlowProps) {
     }
 
     // Fill background once
-    ctx.fillStyle = "#030014"
+    ctx.fillStyle = "#0b1014"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
     animate()
@@ -181,7 +181,7 @@ export function NeonFlow({ children, className }: NeonFlowProps) {
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
-        style={{ touchAction: "none", background: "#030014" }}
+        style={{ touchAction: "none", background: "#0b1014" }}
       />
       <div className="relative z-10 w-full h-full">{children}</div>
     </div>

@@ -256,7 +256,7 @@ function TestimonialCard({ name, role, body, initials, stars, color }: (typeof t
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#030014] text-white overflow-x-hidden">
+    <main className="min-h-screen bg-[#0b1014] text-white overflow-x-hidden">
       {/* ── Navigation ── */}
       <nav className="fixed top-0 left-0 right-0 z-50 glass-strong border-b border-white/8">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -388,7 +388,7 @@ export default function Home() {
             <div className="relative rounded-3xl overflow-hidden w-64 h-[380px] sm:w-72 sm:h-[460px] lg:w-80 lg:h-[520px]">
               {/* Fallback gradient shown if image not yet uploaded */}
               <div
-                className="absolute inset-0 bg-gradient-to-b from-[#1a0a2e] to-[#030014]"
+                className="absolute inset-0 bg-gradient-to-b from-[#1a0a2e] to-[#0b1014]"
                 aria-hidden="true"
               />
               {/* Photo — replace src with actual file once copied to /public/images/ */}
@@ -399,7 +399,7 @@ export default function Home() {
                 onError={(e) => { (e.target as HTMLImageElement).style.opacity = "0" }}
               />
               {/* Bottom gradient blend */}
-              <div className="absolute bottom-0 left-0 right-0 h-32 z-20 bg-gradient-to-t from-[#030014] to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 h-32 z-20 bg-gradient-to-t from-[#0b1014] to-transparent" />
               {/* Name badge */}
               <div className="absolute bottom-5 left-5 right-5 z-30 glass-strong rounded-2xl p-4">
                 <p className="font-bold text-white text-sm">Tim Felix Weber</p>
@@ -423,8 +423,8 @@ export default function Home() {
       </NeonFlow>
 
       {/* ── Leistungen ── */}
-      <section id="leistungen" className="py-28 px-6 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030014] via-[#0a051a] to-[#030014] pointer-events-none" />
+      <section id="leistungen" className="py-32 px-6 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b1014] via-[#0a051a] to-[#0b1014] pointer-events-none" />
         <div className="max-w-6xl mx-auto relative">
           <Section>
             <motion.div variants={fadeUp} className="text-center mb-16">
@@ -459,7 +459,7 @@ export default function Home() {
       </section>
 
       {/* ── Prozess ── */}
-      <section id="prozess" className="py-28 px-6">
+      <section id="prozess" className="py-32 px-6">
         <div className="max-w-6xl mx-auto">
           <Section>
             <motion.div variants={fadeUp} className="text-center mb-16">
@@ -501,7 +501,7 @@ export default function Home() {
       </section>
 
       {/* ── Testimonials ── */}
-      <section id="stimmen" className="py-28 overflow-hidden">
+      <section id="stimmen" className="py-32 overflow-hidden">
         <div className="max-w-6xl mx-auto px-6">
           <Section>
             <motion.div variants={fadeUp} className="text-center mb-16">
@@ -534,16 +534,16 @@ export default function Home() {
             <Marquee vertical pauseOnHover reverse repeat={3} className="[--duration:42s]">
               {testimonials.map((t) => <TestimonialCard key={t.name + "d"} {...t} />)}
             </Marquee>
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-[#030014]" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#030014]" />
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/5 bg-gradient-to-r from-[#030014]" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/5 bg-gradient-to-l from-[#030014]" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-[#0b1014]" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#0b1014]" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/5 bg-gradient-to-r from-[#0b1014]" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/5 bg-gradient-to-l from-[#0b1014]" />
           </div>
         </div>
       </section>
 
       {/* ── Werte / Erfahrung ── */}
-      <section id="erfahrung" className="py-28 px-6">
+      <section id="erfahrung" className="py-32 px-6">
         <div className="max-w-6xl mx-auto">
           <Section>
             <motion.div variants={fadeUp} className="text-center mb-16">
@@ -567,7 +567,7 @@ export default function Home() {
                   style={{ background: "linear-gradient(135deg, #5aab9f, #38bdf8)" }}
                 />
                 <div className="relative w-40 h-48 rounded-2xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#1a1535] to-[#030014]" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#121a1e] to-[#0b1014]" />
                   <img
                     src="/images/8.jpg"
                     alt="Tim Felix Weber"
@@ -662,7 +662,7 @@ export default function Home() {
       </section>
 
       {/* ── Kontakt ── */}
-      <section id="kontakt" className="py-28 px-6 relative">
+      <section id="kontakt" className="py-32 px-6 relative">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div
             className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full"

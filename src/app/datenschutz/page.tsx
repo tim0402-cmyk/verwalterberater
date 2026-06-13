@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Datenschutz() {
   return (
-    <main className="min-h-screen bg-[#030014] text-white">
+    <main className="min-h-screen bg-[#0b1014] text-white">
       {/* Nav */}
       <nav className="glass-strong border-b sticky top-0 z-10" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
         <div className="max-w-3xl mx-auto px-6 h-14 flex items-center">

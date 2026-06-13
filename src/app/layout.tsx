@@ -48,7 +48,7 @@ export default function RootLayout({
       lang="de"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#030014] text-white">
+      <body className="min-h-full flex flex-col bg-[#0b1014] text-white">
         {children}
         <CookieBanner />
       </body>

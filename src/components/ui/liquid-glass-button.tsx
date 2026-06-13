@@ -31,8 +31,10 @@ export function LiquidGlassButton({
         variant === "primary" && [
           "bg-white/10 border-white/20 text-white",
           "hover:bg-white/15 hover:border-white/30",
-          "shadow-[0_0_30px_rgba(168,85,247,0.3),inset_0_1px_0_rgba(255,255,255,0.2)]",
-          "hover:shadow-[0_0_50px_rgba(168,85,247,0.5),inset_0_1px_0_rgba(255,255,255,0.3)]",
+          // Ruhe: dezenter Teal-Glow im Normalzustand …
+          "shadow-[0_0_24px_rgba(79,157,146,0.25),inset_0_1px_0_rgba(255,255,255,0.2)]",
+          // … beim Hover kommt der Lila-Marken-Akzent dezent dazu
+          "hover:shadow-[0_0_45px_rgba(124,92,255,0.45),inset_0_1px_0_rgba(255,255,255,0.3)]",
         ],
         variant === "secondary" && [
           "bg-transparent border-white/30 text-white/80",
@@ -47,7 +49,7 @@ export function LiquidGlassButton({
         className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
           background:
-            "linear-gradient(105deg, transparent 40%, rgba(168,85,247,0.15) 50%, transparent 60%)",
+            "linear-gradient(105deg, transparent 40%, rgba(124,92,255,0.14) 50%, transparent 60%)",
           backgroundSize: "200% 100%",
         }}
       />

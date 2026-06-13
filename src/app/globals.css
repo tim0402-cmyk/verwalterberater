@@ -1,23 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #030014;
-  --foreground: #f0f0ff;
-  --card: #0d0a1f;
-  --card-foreground: #f0f0ff;
-  --muted: #1a1535;
-  --muted-foreground: #8b87b8;
+  /* Palette A "Teal seriös" — ruhiger, neutraler Untergrund ohne Violett-Stich */
+  --background: #0b1014;
+  --foreground: #e8edf0;
+  --card: #121a1e;
+  --card-foreground: #e8edf0;
+  --muted: #121a1e;
+  --muted-foreground: #93a1a8;
   --border: rgba(255, 255, 255, 0.08);
-  --primary: #a855f7;
+  --primary: #4f9d92;
   --primary-foreground: #ffffff;
-  --secondary: #1a1535;
-  --secondary-foreground: #c4bfff;
-  --accent: #e879f9;
+  --secondary: #121a1e;
+  --secondary-foreground: #c7d0d6;
+  --accent: #7c5cff; /* Lila NUR als dezenter Akzent (Hover/Details) */
   --radius: 0.75rem;
-  /* Brand teal */
-  --teal: #5aab9f;
+  /* Marken-Teal */
+  --teal: #4f9d92;
   --teal-light: #7fc4ba;
   --teal-dark: #3d8c82;
+  /* dezenter Lila-Marken-Akzent */
+  --lila: #7c5cff;
 }
 
 @theme inline {
@@ -132,6 +135,6 @@ html {
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #030014; }
+::-webkit-scrollbar-track { background: #0b1014; }
 ::-webkit-scrollbar-thumb { background: rgba(90, 171, 159, 0.4); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(90, 171, 159, 0.6); }
