@@ -20,14 +20,14 @@ interface NeonFlowProps {
 }
 
 const COLORS = [
-  "#a855f7",
-  "#7c3aed",
-  "#c084fc",
-  "#e879f9",
-  "#818cf8",
+  "#5aab9f",
+  "#7fc4ba",
   "#38bdf8",
+  "#60a5fa",
   "#34d399",
-  "#f472b6",
+  "#22d3ee",
+  "#818cf8",
+  "#5aab9f",
 ]
 
 export function NeonFlow({ children, className }: NeonFlowProps) {
@@ -83,11 +83,11 @@ export function NeonFlow({ children, className }: NeonFlowProps) {
       const h = canvas.height
 
       const lines = [
-        { color: "#a855f7", phase: 0, amp: 0.12, freq: 0.008, y: 0.35 },
+        { color: "#5aab9f", phase: 0, amp: 0.12, freq: 0.008, y: 0.35 },
         { color: "#38bdf8", phase: 1.2, amp: 0.09, freq: 0.006, y: 0.5 },
-        { color: "#e879f9", phase: 2.4, amp: 0.15, freq: 0.01, y: 0.65 },
+        { color: "#7fc4ba", phase: 2.4, amp: 0.15, freq: 0.01, y: 0.65 },
         { color: "#34d399", phase: 0.8, amp: 0.08, freq: 0.007, y: 0.42 },
-        { color: "#818cf8", phase: 1.9, amp: 0.11, freq: 0.009, y: 0.58 },
+        { color: "#22d3ee", phase: 1.9, amp: 0.11, freq: 0.009, y: 0.58 },
       ]
 
       for (const line of lines) {

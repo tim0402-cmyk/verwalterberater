@@ -78,8 +78,8 @@ const services = [
     icon: Brain,
     title: "KI-gestützte Beratung",
     desc: "Individuelle KI-Strategien für Deine Hausverwaltung. Von der Tool-Auswahl bis zur Implementierung — praxisnah und sofort umsetzbar.",
-    color: "from-purple-500/20 to-purple-600/5",
-    border: "hover:border-purple-500/40",
+    color: "from-[#5aab9f]/20 to-[#5aab9f]/5",
+    border: "hover:border-[#5aab9f]/40",
     glow: "group-hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]",
   },
   {
@@ -94,8 +94,8 @@ const services = [
     icon: Rocket,
     title: "Digitalisierung",
     desc: "Papierprozesse der Vergangenheit. Digitale Workflows, cloudbasierte Systeme und strukturierte Daten statt Excel-Chaos.",
-    color: "from-fuchsia-500/20 to-fuchsia-600/5",
-    border: "hover:border-fuchsia-500/40",
+    color: "from-cyan-500/20 to-cyan-600/5",
+    border: "hover:border-cyan-500/40",
     glow: "group-hover:shadow-[0_0_30px_rgba(232,121,249,0.2)]",
   },
   {
@@ -114,7 +114,7 @@ const steps = [
     icon: BarChart3,
     title: "Analyse",
     desc: "Bestandsaufnahme Deiner Prozesse, Tools und Pain Points. Wir verstehen erst, bevor wir handeln.",
-    color: "#a855f7",
+    color: "#5aab9f",
   },
   {
     num: "02",
@@ -128,7 +128,7 @@ const steps = [
     icon: Cog,
     title: "Umsetzung",
     desc: "Hands-on Begleitung bei der Implementierung. Keine Theorie — echte Ergebnisse.",
-    color: "#e879f9",
+    color: "#22d3ee",
   },
   {
     num: "04",
@@ -146,7 +146,7 @@ const testimonials = [
     body: "Tim hat unsere komplette Auftragsbearbeitung automatisiert. Wir sparen heute 12 Stunden pro Woche — ohne einen einzigen Mitarbeiter zu entlassen, sondern indem wir sie für wirklich wichtige Aufgaben einsetzen.",
     initials: "AT",
     stars: 5,
-    color: "from-purple-600 to-purple-800",
+    color: "from-[#3d8c82] to-[#2a6b63]",
   },
   {
     name: "Petra Schauerte",
@@ -162,7 +162,7 @@ const testimonials = [
     body: "Was andere Berater in Monaten versprechen, liefert Tim in Wochen. Praxisnähe auf einem Niveau, das ich selten erlebt habe. Absolute Empfehlung für jeden Hausverwalter.",
     initials: "HH",
     stars: 5,
-    color: "from-fuchsia-600 to-fuchsia-800",
+    color: "from-cyan-600 to-cyan-800",
   },
   {
     name: "Jürgen Gutekunst",
@@ -296,9 +296,9 @@ export default function Home() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs text-purple-300 border border-purple-500/20 mb-8"
+              className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs text-[#7fc4ba] border border-[#5aab9f]/25 mb-8"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse inline-block" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#5aab9f] animate-pulse inline-block" />
               KI · Automatisierung · Digitalisierung für Hausverwalter
             </motion.div>
 
@@ -375,7 +375,7 @@ export default function Home() {
             {/* Neon glow behind photo */}
             <div
               className="absolute -inset-8 rounded-3xl blur-2xl opacity-30"
-              style={{ background: "radial-gradient(ellipse, #a855f7 0%, #38bdf8 60%, transparent 100%)" }}
+              style={{ background: "radial-gradient(ellipse, #5aab9f 0%, #38bdf8 60%, transparent 100%)" }}
             />
             {/* Teal accent ring */}
             <div
@@ -416,7 +416,7 @@ export default function Home() {
             transition={{ delay: 1.5, duration: 1 }}
             className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
           >
-            <div className="w-px h-12 bg-gradient-to-b from-transparent via-purple-400 to-transparent" />
+            <div className="w-px h-12 bg-gradient-to-b from-transparent via-[#5aab9f] to-transparent" />
             <span className="text-xs text-white/40 uppercase tracking-widest">Scroll</span>
           </motion.div>
         </div>
@@ -428,7 +428,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto relative">
           <Section>
             <motion.div variants={fadeUp} className="text-center mb-16">
-              <span className="text-xs uppercase tracking-widest text-purple-400 mb-4 block">Was ich anbiete</span>
+              <span className="text-xs uppercase tracking-widest text-[#7fc4ba] mb-4 block">Was ich anbiete</span>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
                 Leistungen, die <span className="text-gradient-purple">wirken</span>
               </h2>
@@ -448,7 +448,7 @@ export default function Home() {
                   </div>
                   <h3 className="text-xl font-bold mb-3 text-white">{s.title}</h3>
                   <p className="text-white/55 leading-relaxed">{s.desc}</p>
-                  <div className="mt-6 flex items-center gap-2 text-sm text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="mt-6 flex items-center gap-2 text-sm text-[#7fc4ba] opacity-0 group-hover:opacity-100 transition-opacity">
                     Mehr erfahren <ChevronRight className="w-4 h-4" />
                   </div>
                 </motion.div>
@@ -472,7 +472,7 @@ export default function Home() {
               </p>
             </motion.div>
             <div className="grid md:grid-cols-4 gap-6 relative">
-              <div className="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-purple-500/30 via-sky-500/30 to-emerald-500/30" />
+              <div className="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[#5aab9f]/30 via-sky-500/30 to-emerald-500/30" />
               {steps.map((step, i) => (
                 <motion.div
                   key={step.num}
@@ -505,7 +505,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <Section>
             <motion.div variants={fadeUp} className="text-center mb-16">
-              <span className="text-xs uppercase tracking-widest text-fuchsia-400 mb-4 block">Was Kunden sagen</span>
+              <span className="text-xs uppercase tracking-widest text-[#22d3ee] mb-4 block">Was Kunden sagen</span>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
                 Echte <span className="text-gradient-purple">Ergebnisse</span>
               </h2>
@@ -564,7 +564,7 @@ export default function Home() {
               <div className="flex-shrink-0 relative">
                 <div
                   className="absolute -inset-1 rounded-2xl blur-sm opacity-60"
-                  style={{ background: "linear-gradient(135deg, #5aab9f, #a855f7)" }}
+                  style={{ background: "linear-gradient(135deg, #5aab9f, #38bdf8)" }}
                 />
                 <div className="relative w-40 h-48 rounded-2xl overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-b from-[#1a1535] to-[#030014]" />
@@ -581,7 +581,7 @@ export default function Home() {
                   />
                   {/* Fallback if photo not yet uploaded */}
                   <div
-                    className="fallback-initials absolute inset-0 z-10 items-center justify-center text-4xl font-black text-white bg-gradient-to-br from-purple-600 to-fuchsia-600"
+                    className="fallback-initials absolute inset-0 z-10 items-center justify-center text-4xl font-black text-white bg-gradient-to-br from-[#5aab9f] to-[#38bdf8]"
                     style={{ display: "none" }}
                   >
                     TW
@@ -651,7 +651,7 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-5">
               {values.map((v) => (
                 <motion.div key={v.title} variants={fadeUp} className="glass rounded-xl p-6 hover:border-white/15 transition-colors">
-                  <v.icon className="w-5 h-5 text-purple-400 mb-4" />
+                  <v.icon className="w-5 h-5 text-[#7fc4ba] mb-4" />
                   <h3 className="font-semibold text-white mb-2">{v.title}</h3>
                   <p className="text-sm text-white/50 leading-relaxed">{v.desc}</p>
                 </motion.div>
@@ -672,7 +672,7 @@ export default function Home() {
         <div className="max-w-3xl mx-auto relative">
           <Section>
             <motion.div variants={fadeUp} className="text-center mb-12">
-              <span className="text-xs uppercase tracking-widest text-purple-400 mb-4 block">Bereit loszulegen?</span>
+              <span className="text-xs uppercase tracking-widest text-[#7fc4ba] mb-4 block">Bereit loszulegen?</span>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
                 Lass uns <span className="text-gradient-purple">reden</span>
               </h2>
@@ -689,7 +689,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="group flex flex-col sm:flex-row items-center gap-6 neon-border rounded-3xl p-6 md:p-8 hover:scale-[1.01] transition-transform"
               >
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 neon-glow-purple" style={{ background: "linear-gradient(135deg, #a855f7, #38bdf8)" }}>
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 neon-glow-purple" style={{ background: "linear-gradient(135deg, #5aab9f, #38bdf8)" }}>
                   <CalendarClock className="w-8 h-8 text-white" />
                 </div>
                 <div className="flex-1 text-center sm:text-left">
@@ -698,7 +698,7 @@ export default function Home() {
                     Wähle Dir einen freien 15-Minuten-Slot im Kalender — unkompliziert, sofort bestätigt.
                   </p>
                 </div>
-                <div className="flex items-center gap-2 text-sm font-semibold whitespace-nowrap px-5 py-3 rounded-full glass-strong group-hover:bg-white/15 transition-colors" style={{ color: "#c4b5fd" }}>
+                <div className="flex items-center gap-2 text-sm font-semibold whitespace-nowrap px-5 py-3 rounded-full glass-strong group-hover:bg-white/15 transition-colors" style={{ color: "#7fc4ba" }}>
                   Slot buchen
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -710,10 +710,10 @@ export default function Home() {
               <div className="grid md:grid-cols-3 gap-5 mb-10">
                 <a
                   href="mailto:info@verwalterberater.de"
-                  className="flex items-center gap-4 glass rounded-xl p-5 hover:border-purple-500/30 transition-all group"
+                  className="flex items-center gap-4 glass rounded-xl p-5 hover:border-[#5aab9f]/40 transition-all group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-purple-500/15 flex items-center justify-center flex-shrink-0 group-hover:bg-purple-500/25 transition-colors">
-                    <Mail className="w-5 h-5 text-purple-400" />
+                  <div className="w-12 h-12 rounded-xl bg-[#5aab9f]/15 flex items-center justify-center flex-shrink-0 group-hover:bg-[#5aab9f]/25 transition-colors">
+                    <Mail className="w-5 h-5 text-[#7fc4ba]" />
                   </div>
                   <div>
                     <p className="text-xs text-white/40 mb-0.5">E-Mail</p>
