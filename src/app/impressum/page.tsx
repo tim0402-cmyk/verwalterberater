@@ -42,8 +42,8 @@ export default function Impressum() {
             <h2 className="text-white font-semibold text-lg mb-3">Kontakt</h2>
             <p>
               E-Mail:{" "}
-              <a href="mailto:donna@verwalterberater.de" className="text-[#5aab9f] hover:underline">
-                donna@verwalterberater.de
+              <a href="mailto:impressum@verwalterberater.de" className="text-[#5aab9f] hover:underline">
+                impressum@verwalterberater.de
               </a>
             </p>
           </section>
