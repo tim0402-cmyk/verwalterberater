@@ -85,14 +85,13 @@ export function Logo({ variant = "white", showText = true, className, size = "md
   )
 }
 
-// Inline nav variant: just the mark + text side by side or stacked
+// Inline nav variant: echtes Logo (weiße Version) als Bild
 export function NavLogo({ className }: { className?: string }) {
   return (
-    <div className={cn("flex items-center gap-2.5", className)}>
-      <LogoMark color="white" className="h-8 w-auto" />
-      <span className="font-bold text-base tracking-widest text-white uppercase">
-        Verwalter<span style={{ color: "#5aab9f" }}>berater</span>
-      </span>
-    </div>
+    <img
+      src="/images/logo-white.png"
+      alt="Verwalterberater"
+      className={cn("h-11 w-auto select-none", className)}
+    />
   )
 }

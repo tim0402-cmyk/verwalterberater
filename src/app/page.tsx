@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import {
   Brain,
@@ -52,6 +52,47 @@ const fadeUp = {
 const stagger = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12 } },
+}
+
+// Zählt eine Zahl animiert von 0 auf den Zielwert hoch, sobald sichtbar
+function CountUp({
+  to,
+  prefix = "",
+  suffix = "",
+  duration = 1.8,
+  className = "",
+}: {
+  to: number
+  prefix?: string
+  suffix?: string
+  duration?: number
+  className?: string
+}) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const inView = useInView(ref, { once: true, margin: "-40px" })
+  const [val, setVal] = useState(0)
+
+  useEffect(() => {
+    if (!inView) return
+    let raf = 0
+    const start = performance.now()
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / (duration * 1000), 1)
+      const eased = 1 - Math.pow(1 - p, 3) // easeOutCubic
+      setVal(Math.round(eased * to))
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [inView, to, duration])
+
+  return (
+    <span ref={ref} className={className}>
+      {prefix}
+      {val}
+      {suffix}
+    </span>
+  )
 }
 
 function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -193,7 +234,7 @@ const values = [
   {
     icon: Shield,
     title: "25 Jahre Branchenwissen",
-    desc: "Kein Theoretiker — Tim betreibt selbst eine Hausverwaltung. Jeder Rat kommt aus echter Praxiserfahrung.",
+    desc: "Keine Theoretiker — wir betreiben selbst eine Hausverwaltung. Jeder Rat kommt aus echter Praxiserfahrung.",
   },
   {
     icon: Users,
@@ -208,7 +249,7 @@ const values = [
   {
     icon: Award,
     title: "KI-Mehrwert",
-    desc: "KI ist kein Hype, sondern Werkzeug. Tim zeigt Dir, welche Tools wirklich helfen — und welche Du weglassen kannst.",
+    desc: "KI ist kein Hype, sondern Werkzeug. Wir zeigen Dir, welche Tools wirklich helfen — und welche Du weglassen kannst.",
   },
   {
     icon: Clock,
@@ -219,6 +260,33 @@ const values = [
     icon: CheckCircle2,
     title: "Datenschutz First",
     desc: "Alle Empfehlungen berücksichtigen die DSGVO und gängige Branchensoftware. Sicherheit hat Vorrang.",
+  },
+]
+
+const team = [
+  {
+    name: "Tim Felix Weber",
+    role: "Geschäftsführer & KI-Architekt",
+    img: "/images/team-tim.jpg",
+    initials: "TW",
+    bio: "Führt mit CASITA selbst eine Berliner Hausverwaltung und weiß aus erster Hand, welche Prozesse sich zu automatisieren lohnen. Übersetzt KI in konkrete, sofort nutzbare Abläufe.",
+    linkedin: "https://www.linkedin.com/in/timfelixweber/",
+  },
+  {
+    name: "Ralf Michels",
+    role: "Strategie & Branchennetzwerk",
+    img: "/images/team-ralf.jpg",
+    initials: "RM",
+    bio: "Verkaufte seine eigene Verwaltung mit über 6.000 Einheiten und ist Präsidiumsmitglied im VDIV. Bringt Marktüberblick, Strategie und ein starkes Branchennetzwerk ein.",
+    linkedin: null,
+  },
+  {
+    name: "Nicole Wilke",
+    role: "Prozesse & Umsetzung",
+    img: "/images/team-nicole.jpg",
+    initials: "NW",
+    bio: "Sorgt dafür, dass aus Strategie gelebte Praxis wird — strukturiert Abläufe, begleitet die Umsetzung und hält im Team den roten Faden.",
+    linkedin: null,
   },
 ]
 
@@ -376,12 +444,17 @@ export default function Home() {
               className="mt-12 grid grid-cols-3 gap-8"
             >
               {[
-                { val: "25+", label: "Jahre Branchenwissen" },
-                { val: "100+", label: "Unternehmen beraten" },
-                { val: "bis 70%", label: "Zeitersparnis" },
+                { to: 25, prefix: "", suffix: "+", label: "Jahre Branchenwissen" },
+                { to: 100, prefix: "", suffix: "+", label: "Unternehmen beraten" },
+                { to: 70, prefix: "bis ", suffix: "%", label: "Zeitersparnis" },
               ].map((s) => (
                 <div key={s.label}>
-                  <p className="text-2xl md:text-3xl font-bold text-gradient-purple">{s.val}</p>
+                  <CountUp
+                    to={s.to}
+                    prefix={s.prefix}
+                    suffix={s.suffix}
+                    className="text-2xl md:text-3xl font-bold text-gradient-purple inline-block"
+                  />
                   <p className="text-xs text-white/40 mt-1 tracking-wide uppercase">{s.label}</p>
                 </div>
               ))}
@@ -406,7 +479,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto relative">
           <Section>
             <motion.div variants={fadeUp} className="text-center mb-16">
-              <span className="text-xs uppercase tracking-widest text-[#7fc4ba] mb-4 block">Was ich anbiete</span>
+              <span className="text-xs uppercase tracking-widest text-[#7fc4ba] mb-4 block">Was wir anbieten</span>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
                 Leistungen, die <span className="text-gradient-purple">wirken</span>
               </h2>
@@ -525,105 +598,83 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <Section>
             <motion.div variants={fadeUp} className="text-center mb-16">
-              <span className="text-xs uppercase tracking-widest text-emerald-400 mb-4 block">Warum Tim Weber</span>
+              <span className="text-xs uppercase tracking-widest text-emerald-400 mb-4 block">Das Team</span>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
                 Erfahrung <span className="text-gradient-neon">trifft Innovation</span>
               </h2>
               <p className="text-white/50 max-w-xl mx-auto">
-                Kein externer Theoretiker — sondern ein Unternehmer, der täglich die gleichen Herausforderungen kennt wie Du.
+                Keine externen Theoretiker — sondern Praktiker, die die Hausverwaltung aus eigener Erfahrung kennen.
+                Strategie, Technik und Umsetzung aus einer Hand.
               </p>
             </motion.div>
 
-            <motion.div
-              variants={fadeUp}
-              className="neon-border rounded-3xl p-8 md:p-12 mb-12 flex flex-col md:flex-row gap-10 items-center"
-            >
-              {/* Profile photo */}
-              <div className="flex-shrink-0 relative">
-                <div
-                  className="absolute -inset-1 rounded-2xl blur-sm opacity-60"
-                  style={{ background: "linear-gradient(135deg, #5aab9f, #38bdf8)" }}
-                />
-                <div className="relative w-40 h-48 rounded-2xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#121a1e] to-[#0b1014]" />
-                  <img
-                    src="/images/8.jpg"
-                    alt="Tim Felix Weber"
-                    className="relative z-10 w-full h-full object-cover object-top"
-                    onError={(e) => {
-                      const el = e.target as HTMLImageElement
-                      el.style.display = "none"
-                      const fallback = el.parentElement?.querySelector(".fallback-initials") as HTMLElement
-                      if (fallback) fallback.style.display = "flex"
-                    }}
-                  />
-                  {/* Fallback if photo not yet uploaded */}
-                  <div
-                    className="fallback-initials absolute inset-0 z-10 items-center justify-center text-4xl font-black text-white bg-gradient-to-br from-[#5aab9f] to-[#38bdf8]"
-                    style={{ display: "none" }}
-                  >
-                    TW
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold text-white mb-1">Tim Felix Weber</h3>
-                <p className="text-sm mb-5" style={{ color: "#5aab9f" }}>
-                  Unternehmer · Hausverwalter · KI-Berater · Podcast-Host &ldquo;Der Verwalterberater&rdquo;
-                </p>
-                <p className="text-white/60 leading-relaxed mb-5">
-                  Tim betreibt mit CASITA selbst eine aktive Hausverwaltung in Berlin und weiß daher aus erster Hand,
-                  welche Prozesse sich lohnen zu automatisieren — und welche nicht. Sein Ansatz: Keine Buzzwords,
-                  keine generischen Frameworks. Nur was wirklich hilft.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {["Berlin", "25+ Jahre Erfahrung", "WEG · Miet · Eigentum", "CASITA GmbH"].map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs px-3 py-1 rounded-full glass"
-                      style={{ border: "1px solid rgba(90,171,159,0.25)", color: "#5aab9f" }}
+            {/* Team-Grid */}
+            <div className="grid md:grid-cols-3 gap-6 mb-10">
+              {team.map((m) => (
+                <motion.div
+                  key={m.name}
+                  variants={fadeUp}
+                  className="glass rounded-2xl overflow-hidden flex flex-col hover:border-[#5aab9f]/30 transition-colors"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#121a1e] to-[#0b1014]" />
+                    <img
+                      src={m.img}
+                      alt={m.name}
+                      className="relative z-10 w-full h-full object-cover object-center"
+                      onError={(e) => {
+                        const el = e.target as HTMLImageElement
+                        el.style.display = "none"
+                        const fb = el.parentElement?.querySelector(".fb") as HTMLElement
+                        if (fb) fb.style.display = "flex"
+                      }}
+                    />
+                    <div
+                      className="fb absolute inset-0 z-10 items-center justify-center text-5xl font-black text-white bg-gradient-to-br from-[#5aab9f] to-[#38bdf8]"
+                      style={{ display: "none" }}
                     >
-                      {tag}
-                    </span>
-                  ))}
+                      {m.initials}
+                    </div>
+                    <div className="absolute bottom-0 inset-x-0 h-20 z-20 bg-gradient-to-t from-[#0b1014] to-transparent" />
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="text-lg font-bold text-white">{m.name}</h3>
+                    <p className="text-sm mb-3" style={{ color: "#5aab9f" }}>{m.role}</p>
+                    <p className="text-sm text-white/55 leading-relaxed flex-1">{m.bio}</p>
+                    {m.linkedin && (
+                      <a
+                        href={m.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 mt-4 text-xs font-medium transition-colors hover:opacity-80"
+                        style={{ color: "#4d9fdc" }}
+                      >
+                        <LinkedinIcon className="w-4 h-4" /> LinkedIn
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Podcast-Hinweis */}
+            <motion.div variants={fadeUp} className="mb-12 flex justify-center">
+              <a
+                href="https://open.spotify.com/show/2lCJj9KOSLL8yJze7epqhT"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 glass rounded-xl px-5 py-3 transition-all group"
+                style={{ border: "1px solid rgba(29,185,84,0.2)" }}
+              >
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "#1db954" }}>
+                  <Headphones className="w-4 h-4 text-white" />
                 </div>
-                {/* Podcast + LinkedIn CTAs */}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href="https://open.spotify.com/show/2lCJj9KOSLL8yJze7epqhT"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 glass rounded-xl px-5 py-3 transition-all group"
-                    style={{ border: "1px solid rgba(29,185,84,0.2)" }}
-                  >
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "#1db954" }}>
-                      <Headphones className="w-4 h-4 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-white/40">Jetzt anhören auf Spotify</p>
-                      <p className="text-sm font-semibold text-white">Der Verwalterberater Podcast</p>
-                    </div>
-                    <ExternalLink className="w-4 h-4 text-white/30 ml-2 group-hover:text-white/60 transition-colors" />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/timfelixweber/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 glass rounded-xl px-5 py-3 transition-all group"
-                    style={{ border: "1px solid rgba(10,102,194,0.25)" }}
-                  >
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "#0a66c2" }}>
-                      <LinkedinIcon className="w-4 h-4 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-white/40">Vernetzen auf LinkedIn</p>
-                      <p className="text-sm font-semibold text-white">Tim Felix Weber</p>
-                    </div>
-                    <ExternalLink className="w-4 h-4 text-white/30 ml-2 group-hover:text-white/60 transition-colors" />
-                  </a>
+                <div>
+                  <p className="text-xs text-white/40">Jetzt anhören auf Spotify</p>
+                  <p className="text-sm font-semibold text-white">Der Verwalterberater Podcast</p>
                 </div>
-              </div>
+                <ExternalLink className="w-4 h-4 text-white/30 ml-2 group-hover:text-white/60 transition-colors" />
+              </a>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-5">
@@ -684,7 +735,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={fadeUp} className="glass-strong rounded-3xl p-8 md:p-12">
-              <p className="text-center text-xs text-white/30 uppercase tracking-widest mb-6">Oder schreib mir direkt</p>
+              <p className="text-center text-xs text-white/30 uppercase tracking-widest mb-6">Oder schreib uns direkt</p>
               <div className="grid md:grid-cols-3 gap-5 mb-10">
                 <a
                   href="mailto:info@verwalterberater.de"
