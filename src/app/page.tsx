@@ -59,13 +59,15 @@ function CountUp({
   to,
   prefix = "",
   suffix = "",
-  duration = 1.8,
+  duration = 3.4,
+  delay = 0.5,
   className = "",
 }: {
   to: number
   prefix?: string
   suffix?: string
   duration?: number
+  delay?: number
   className?: string
 }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -75,16 +77,22 @@ function CountUp({
   useEffect(() => {
     if (!inView) return
     let raf = 0
-    const start = performance.now()
+    let startTime: number | null = null
     const tick = (now: number) => {
-      const p = Math.min((now - start) / (duration * 1000), 1)
-      const eased = 1 - Math.pow(1 - p, 3) // easeOutCubic
+      if (startTime === null) startTime = now
+      const elapsed = (now - startTime) / 1000 - delay
+      if (elapsed < 0) {
+        raf = requestAnimationFrame(tick)
+        return
+      }
+      const p = Math.min(elapsed / duration, 1)
+      const eased = 1 - Math.pow(1 - p, 1.7) // sanfter, gleichmäßiger als Cubic
       setVal(Math.round(eased * to))
       if (p < 1) raf = requestAnimationFrame(tick)
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [inView, to, duration])
+  }, [inView, to, duration, delay])
 
   return (
     <span ref={ref} className={className}>
