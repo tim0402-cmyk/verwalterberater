@@ -200,14 +200,6 @@ const testimonials = [
     video: null as string | null,
   },
   {
-    name: "Petra Schauerte",
-    role: "Mitglied im VDIV",
-    body: "KI war für mich ein Fremdwort — heute ist es mein tägliches Werkzeug. Es wird so erklärt, dass man es sofort anwenden kann.",
-    initials: "PS",
-    stars: 5,
-    video: null as string | null,
-  },
-  {
     name: "Hubert Haas",
     role: "Mitglied im VDIV",
     body: "Praxisnähe auf einem Niveau, das ich selten erlebt habe. Absolute Empfehlung für jeden Hausverwalter.",
@@ -498,12 +490,13 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.8 }}
-              className="mt-12 grid grid-cols-3 gap-8"
+              className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8"
             >
               {[
                 { to: 25, prefix: "", suffix: "+", label: "Jahre Branchenwissen" },
                 { to: 100, prefix: "", suffix: "+", label: "Unternehmen beraten" },
-                { to: 70, prefix: "bis ", suffix: "%", label: "Zeitersparnis" },
+                { to: 50, prefix: "bis zu +", suffix: "%", label: "Mehr Gewinn" },
+                { to: 70, prefix: "bis zu ", suffix: "%", label: "Zeitersparnis" },
               ].map((s) => (
                 <div key={s.label}>
                   <CountUp
@@ -517,16 +510,6 @@ export default function Home() {
               ))}
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
-            transition={{ delay: 1.5, duration: 1 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          >
-            <div className="w-px h-12 bg-gradient-to-b from-transparent via-[#5aab9f] to-transparent" />
-            <span className="text-xs text-white/40 uppercase tracking-widest">Scroll</span>
-          </motion.div>
         </div>
       </section>
 
