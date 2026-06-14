@@ -687,7 +687,7 @@ export default function Home() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 mt-4 text-xs font-medium transition-colors hover:opacity-80"
-                        style={{ color: "#4d9fdc" }}
+                        style={{ color: "#0a66c2" }}
                       >
                         <LinkedinIcon className="w-4 h-4" /> LinkedIn
                       </a>
@@ -801,7 +801,7 @@ export default function Home() {
                   style={{ border: "1px solid rgba(10,102,194,0.2)" }}
                 >
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors" style={{ background: "rgba(10,102,194,0.18)" }}>
-                    <LinkedinIcon className="w-5 h-5" style={{ color: "#4d9fdc" }} />
+                    <LinkedinIcon className="w-5 h-5" style={{ color: "#0a66c2" }} />
                   </div>
                   <div>
                     <p className="text-xs text-white/40 mb-0.5">LinkedIn</p>
